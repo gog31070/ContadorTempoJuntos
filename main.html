@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Minha Namorada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #add8e6; /* Azul bebê */
+            color: #333; /* Texto escuro para contraste */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #add8e6; /* Azul bebê */
+            padding: 20px;
+        }
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .galeria img {
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .contador {
+            font-size: 1.5em;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .texto {
+            margin: 20px;
+            font-size: 1.2em;
+        }
+        footer {
+            font-size: 0.8em;
+            color: #666; /* Texto discreto */
+            margin-top: 120vh; /* Move o rodapé para fora da área visível inicial */
+            padding: 10px;
+            background-color: #add8e6; /* Azul bebê para manter o tema */
+        }
+    </style>
+    <script>
+        function atualizarContador() {
+            const dataInicio = new Date("2024-10-20T13:51:00");
+            const agora = new Date();
+            const diferenca = agora - dataInicio;
+
+            const anos = Math.floor(diferenca / (1000 * 60 * 60 * 24 * 365));
+            const meses = Math.floor((diferenca % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const dias = Math.floor((diferenca % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+            document.getElementById("contador").innerHTML =
+                `<strong>${anos} anos, ${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos, ${segundos} segundos</strong>`;
+        }
+
+        setInterval(atualizarContador, 1000);
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Para Minha Namorada 💖</h1>
+    </header>
+    <div class="galeria">
+        <img src="foto1.jpg" alt="Foto 1">
+        <img src="foto2.jpg" alt="Foto 2">
+        <img src="foto3.jpg" alt="Foto 3">
+    </div>
+    <div class="contador">
+        <p><strong>Estamos juntos há:</strong></p>
+        <p id="contador">Carregando...</p>
+    </div>
+    <div class="texto">
+        <p>
+            Oi meu amor! Fiz mais um site mas mais simples, apenas para poder ter nosso tempo juntos calculado perfeitamente, nós nunca iriamos nos esquecer, mas nunca é demais né?</p>
+        <p>
+            Obrigado por tudo que ja passamos, e por o que vai por vir, pretendo fazer viver bem mais do que ja foi. Esse tempo juntos foi o melhor da minha vida, mal vejo a hora de ver o resto.</p>
+        <p>
+            Te amo meu bem!💖</p>
+
+        
+        
+    </div>
+    <footer>
+        <p>P.S. essas fotos foram a que eu pensei na hora, mas da para mudar tranquilamente!</p>
+    </footer>
+</body>
+</html>
