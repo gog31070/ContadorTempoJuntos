@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Thaina</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #add8e6; /* Azul bebê */
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #add8e6;
+            padding: 20px;
+        }
+        .slideshow-container {
+            max-width: 600px;
+            margin: 20px auto 30px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .slides {
+            display: none;
+        }
+        .slides img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev {
+            left: 0;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .dot-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+        .content {
+            margin: 20px;
+            font-size: 18px;
+        }
+        .timer {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px; /* Menor espaço entre o "Estamos juntos" e o tempo */
+        }
+        .timer-title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-top: 50px; /* Maior espaço entre as fotos e o temporizador */
+        }
+        .content-margin {
+            margin-top: 40px; /* Aumento do espaço entre o temporizador e o texto */
+        }
+        footer {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 120vh;
+            padding: 10px;
+            background-color: #add8e6;
+        }
+    </style>
+    <script>
+        let slideIndex = 0;
+
+        function showSlides(n) {
+            const slides = document.getElementsByClassName("slides");
+            const dots = document.getElementsByClassName("dot");
+
+            if (n > slides.length) slideIndex = 1;
+            if (n < 1) slideIndex = slides.length;
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+        function plusSlides(n) {
+            showSlides((slideIndex += n));
+        }
+
+        function currentSlide(n) {
+            showSlides((slideIndex = n));
+        }
+
+        function autoShowSlides() {
+            const slides = document.getElementsByClassName("slides");
+            const dots = document.getElementsByClassName("dot");
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slideIndex++;
+            if (slideIndex > slides.length) slideIndex = 1;
+
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+
+            setTimeout(autoShowSlides, 10000); // Troca automaticamente a cada 10 segundos
+        }
+
+        document.addEventListener("DOMContentLoaded", autoShowSlides);
+
+        function updateTimer() {
+            const startDate = new Date("October 20, 2024 13:51:00");
+            const now = new Date();
+
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
+
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            if (days < 0) {
+                months--;
+                const daysInLastMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                days += daysInLastMonth;
+
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+            }
+
+            const hours = now.getHours() - startDate.getHours();
+            const minutes = now.getMinutes() - startDate.getMinutes();
+            const seconds = now.getSeconds() - startDate.getSeconds();
+
+            document.getElementById("timer-title").textContent = "Estamos juntos:";
+            document.getElementById("timer").textContent = 
+                `${years} anos, ${months} meses, ${days} dias, ${Math.abs(hours)} horas, ${Math.abs(minutes)} minutos e ${Math.abs(seconds)} segundos.`;
+        }
+
+        setInterval(updateTimer, 1000);
+    </script>
+</head>
+<body>
+    <header>
+        <h1>🕰️ Nosso Tempo 🕰️</h1>
+    </header>
+
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+        <div class="slides">
+            <img src="foto1.jpg" alt="Foto 1">
+        </div>
+        <div class="slides">
+            <img src="foto2.jpg" alt="Foto 2">
+        </div>
+        <div class="slides">
+            <img src="foto3.jpg" alt="Foto 3">
+        </div>
+        <div class="slides">
+            <img src="foto4.jpg" alt="Foto 4">
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+
+    <!-- Temporizador -->
+    <div class="timer-title" id="timer-title"></div>
+    <div class="timer" id="timer"></div>
+
+    <!-- Texto -->
+    <div class="content content-margin">
+        <p>
+            Oi meu amor! Fiz mais um site mas mais simples, apenas para poder ter nosso tempo juntos calculado perfeitamente, nós nunca iriamos nos esquecer, mas nunca é demais né?
+        </p>
+        <p>
+            Obrigado por tudo que ja passamos, e por o que vai por vir, pretendo fazer viver bem mais do que ja foi. Esse tempo juntos foi o melhor da minha vida, mal vejo a hora de ver o resto.
+        </p>
+        <p>
+            Te amo meu bem!💖
+        </p>
+    </div>
+
+    <footer>
+        <p>P.S. essas fotos foram a que eu pensei na hora, mas da para mudar tranquilamente!</p>
+    </footer>
+</body>
+</html>
